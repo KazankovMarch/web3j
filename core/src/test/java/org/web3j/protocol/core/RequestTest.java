@@ -268,6 +268,25 @@ public class RequestTest extends RequestTester {
     }
 
     @Test
+    public void testEthSignTransaction() throws Exception {
+        web3j.ethSignTransaction(
+                        new Transaction(
+                                "0xb60e8dd61c5d32be8058bb8eb970870f07233155",
+                                BigInteger.ONE,
+                                Numeric.toBigInt("0x9184e72a000"),
+                                Numeric.toBigInt("0x76c0"),
+                                "0xb60e8dd61c5d32be8058bb8eb970870f07233155",
+                                Numeric.toBigInt("0x9184e72a"),
+                                "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb"
+                                        + "970870f072445675058bb8eb970870f072445675"))
+                .send();
+
+        verifyResult(
+                "{\"jsonrpc\":\"2.0\",\"method\":\"eth_signTransaction\",\"params\":[{\"from\":\"0xb60e8dd61c5d32be8058bb8eb970870f07233155\",\"to\":\"0xb60e8dd61c5d32be8058bb8eb970870f07233155\",\"gas\":\"0x76c0\",\"gasPrice\":\"0x9184e72a000\",\"value\":\"0x9184e72a\",\"data\":\"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675\",\"nonce\":\"0x1\"}],\"id\":1}");
+
+    }
+
+    @Test
     public void testEthSendTransaction() throws Exception {
         web3j.ethSendTransaction(
                         new Transaction(

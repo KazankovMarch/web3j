@@ -128,13 +128,14 @@ public class Transfer extends ManagedTransaction {
             BigInteger maxFeePerGas)
             throws IOException {
         EthChainId chainId = web3j.ethChainId().send();
-        TransactionManager transactionManager = new RawTransactionManager(web3j, credentials);
+        long chainIdLongValue = chainId.getChainId().longValue();
+        TransactionManager transactionManager = new RawTransactionManager(web3j, credentials, chainIdLongValue);
 
         return new RemoteCall<>(
                 () ->
                         new Transfer(web3j, transactionManager)
                                 .sendEIP1559(
-                                        chainId.getChainId().longValue(),
+                                        chainIdLongValue,
                                         toAddress,
                                         value,
                                         unit,

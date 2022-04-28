@@ -43,6 +43,8 @@ dependencies {
     testImplementation "org.hyperledger.besu.internal:util:$besuInternalVersion",withoutAbi
     testImplementation "org.hyperledger.besu:bls12-381:$besuCryptoDepVersion",withoutAbi
     testImplementation "org.hyperledger.besu:secp256k1:$besuCryptoDepVersion",withoutAbi
+    // MacOS ad-hoc https://stackoverflow.com/a/70369813/13459489
+    testImplementation 'net.java.dev.jna:jna-platform:5.8.0'
 }
 
 
